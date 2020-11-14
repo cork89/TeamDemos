@@ -1,4 +1,7 @@
 <script>
+	import DemoHistory from "../components/DemoHistory.svelte";
+	import Demo from "../components/Demo.svelte";
+	export let team = "";
 </script>
 
 <style>
@@ -8,6 +11,7 @@
 		padding: 1em;
 		max-width: 240px;
 		margin: 0 auto;
+		max-width: none;
 	}
 
 	h1 {
@@ -17,18 +21,20 @@
 		font-weight: 100;
 	}
 
+	.container {
+		display: flex;
+	/* }
+
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
 		}
-	}
+	} */
 </style>
 
 <main>
-	<h1>Hello name!</h1>
-	<p>
-		Visit the
-		<a href="https://svelte.dev/tutorial">Svelte tutorial</a>
-		to learn how to build Svelte apps.
-	</p>
+	<div class="container">
+		<DemoHistory />
+		<Demo team={team}/>
+	</div>
 </main>

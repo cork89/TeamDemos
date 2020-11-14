@@ -1,10 +1,12 @@
 <script>
 	import { Link } from "svelte-routing";
+	import { createEventDispatcher } from 'svelte';
 
 	let options = [];
 	let selected;
+	const dispatch = createEventDispatcher();
 
-	fetch("http://localhost:3000/")
+	fetch("http://localhost:8080/teams")
 		.then((res) => {
 			let json = res.json();
 			console.log(json);
@@ -20,9 +22,10 @@
 		})
 		.catch((err) => []);
 
-	function saveTeam(event) {
+	function chooseTeam(event) {
 		console.log(event.target.value);
 		localStorage.setItem("favoriteTeam", event.target.value);
+		dispatch("message", event.target.value);
 	}
 </script>
 
@@ -69,12 +72,12 @@
 				</Link>
 			
 			<Link to="create">
-				<div class="link">Create Agile Team</div>
+				<div class="link">Agile Teams</div>
 			</Link>
 		</div>
 		<div class="right">
 			Agile Team:
-			<select bind:value={selected} on:blur={saveTeam}>
+			<select bind:value={selected} on:blur={chooseTeam}>
 				{#each options as option}
 					<option>{option.name}</option>
 				{/each}

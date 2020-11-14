@@ -6,6 +6,11 @@
 	import NotFound from "./pages/NotFound.svelte";
 	import { Router, Route } from "svelte-routing";
 	export let url = "";
+	export let team = "";
+
+	function handleMessage(event) {
+		team = event.detail;
+	}
 </script>
 
 <style>
@@ -41,7 +46,7 @@
 </div> -->
 
 <Router url="{url}">
-	<Header />
+	<Header on:message={handleMessage} />
   <div>
     <Route path="create" component="{Create}" /> 
     <!--for now the router just support case sensitive,
@@ -49,7 +54,7 @@
         Example.
        <Route path="About" component="{About}" /> 
     -->
-		<Route path="/"><Home /></Route>
+		<Route path="/"><Home team={team}/></Route>
 		<Route component="{NotFound}" />
   </div>
 	<Footer />

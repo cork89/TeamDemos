@@ -4,4 +4,4 @@
 	}
 </style>
 
-<footer>Hello</footer>
+<footer>Footer</footer>
